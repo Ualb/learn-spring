@@ -1,17 +1,38 @@
 package ualb.com.HolaSpring;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
+import ualb.com.HolaSpring.domain.Person;
 
-@RestController
+@Controller
 @Slf4j
 public class InitialController {
     
+    // Esta variable sirbe para obtener datos del .properties
+    @Value("${index.saludo}")
+    private String hi;
+
     @GetMapping("/")
-    public String getInitial() {
+    public String getInitial(Model model) {
         // log.info("ejecutando el controlador rest");
-        return "¡Hell, Word! with spring";
+        var name = "Ulises López";
+        // compartiendo variables con la pagina de inicio
+        model.addAttribute("name", name);
+        model.addAttribute("hi", hi);
+
+        // Podemos usar una persona como ejemplo
+        var persona = new Person();
+        persona.setName("Ulises");
+        persona.setLastName("López");
+        persona.setEmail("ulises@uli.com");
+        persona.setPhone("86204040");
+        
+        model.addAttribute("person", persona);
+
+        return "index";
     }
 }

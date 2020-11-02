@@ -7,8 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class HolaSpringApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HolaSpringApplication.class, args);
-		System.out.println("hello word");
+		SpringApplication.run(HolaSpringApplication.class, args); 
 	}
 
 }
