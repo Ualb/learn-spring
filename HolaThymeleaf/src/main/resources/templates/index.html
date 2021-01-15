@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <!-- spring-test :: aladino1 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio con thymeleaf</title>
@@ -10,15 +11,26 @@
     <p th:text="Saludos"></p>
     <p th:text="${name}"></p>
     <p th:text="${hi}"></p>
-
-    <br>
-    Nombre: <span th:text="${person.name}">Name of person</span>
-    <br>
-    Apellido: <span th:text="${person.lastName}">LastName of person</span>
-    <br>
-    Correo: <span th:text="${person.email}">Email of person</span>
-    <br>
-    Teléfono: <span th:text="${person.phone}">Phone of person</span> 
+    <div th:if="${persons != null and !persons.empty}">
+        <table>
+            <tr>
+                <th>Nombre:</th>
+                <th>Apellido:</th>
+                <th>Email:</th>
+                <th>Teléfono:</th>
+            </tr>
+            <tr th:each="person : ${persons}">
+                <td th:text="${person.name}">Name of person</td>
+                <td th:text="${person.lastName}">LastName of person</td>
+                <td th:text="${person.email}">Email of person</td>
+                <td th:text="${person.phone}">Phone of person</td>
+            </tr>
+        </table>
+    </div>
+    <div th:if="${persons == null or persons.empty}">
+        La lista de personas está vacía :(
+    </div>
+     
 
 </body>
 </html>
