@@ -9,6 +9,7 @@
 <body>
     <h1>Inicio</h1>
     <p th:text="Saludos"></p> 
+    <a th:href="@{/agregar}">Crear Persona</a>
     <div th:if="${persons != null and !persons.empty}">
         <table>
             <tr>
@@ -17,6 +18,8 @@
                 <th>Apellido:</th>
                 <th>Email:</th>
                 <th>Teléfono:</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
             </tr>
             <tr th:each="person : ${persons}">
                 <td th:text="${person.idPerson}">ID</td>
@@ -24,6 +27,8 @@
                 <td th:text="${person.lastName}">LastName of person</td>
                 <td th:text="${person.email}">Email of person</td>
                 <td th:text="${person.phone}">Phone of person</td> 
+                <td><a th:href="@{/edit/} + ${person.idPerson}" th:text="Editar"></a></td>
+                <td><a th:href="@{/del(${person.idPerson})}" th:text="Eliminar"></a></td>
             </tr>
         </table>
     </div>
