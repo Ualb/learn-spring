@@ -30,7 +30,7 @@ public class PersonServiceImpl implements IPersonService {
     @Override
     @Transactional
     public void delete(Person person) {
-        personDao.save(person);
+        personDao.delete(person);
 
     }
 
