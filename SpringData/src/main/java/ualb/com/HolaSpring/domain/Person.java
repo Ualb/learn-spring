@@ -2,7 +2,9 @@ package ualb.com.HolaSpring.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.*;  
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.Data;
 import lombok.Getter;
@@ -18,8 +20,8 @@ public class Person implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idPerson;
-    @Getter @Setter String name;
-    @Getter @Setter private String lastName;
-    @Getter @Setter private String email;
+    @Getter @Setter @NotEmpty String name;
+    @Getter @Setter private @NotEmpty String lastName;
+    @Getter @Setter private @NotEmpty @Email String email;
     @Getter @Setter private String phone;
 }
