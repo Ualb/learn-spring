@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"> 
+    <title>Datos de la persona</title>
+</head>
+<body>
+    <h1>Datos de la persona</h1>
+    <a th:href="@{/}">Regresar</a>
+    <br>
+    <form th:action="@{/save}" method="post" th:object="${person}">
+        <input type="hidden" name="idPerson" th:field="*{idPerson}">
+        <label for="name">Nombre:</label>
+        <input type="text" name="name" th:field="*{name}">
+        <!-- para saber si se cumplen con los requisitos del modelo, notempty no nulo
+        busca si existen errores, si existen se muestra -->
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">No puede estar vacío</span>
+        <br>
+        <label for="lastName">Apellido:</label>
+        <input type="text" name="lastName" th:field="*{lastName}">
+        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">No puede estar vacío</span>
+        <br>
+        <label for="email">Correo:</label>
+        <input type="text" name="email" th:field="*{email}">        
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">No puede estar vacío</span>
+        <br>
+        <label for="phone">Teléfono:</label>
+        <input type="tel" name="phone" th:field="*{phone}">
+        <br>
+        <input type="submit" value="Guardar" name="guardar">
+    </form>
+</body>
+</html>
