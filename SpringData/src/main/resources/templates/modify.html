@@ -6,29 +6,29 @@
 </head>
 <body>
     <header th:replace="layout/template :: header"></header>
-    <h2>Datos de la persona</h2>
-    <a th:href="@{/}">Regresar</a>
+    <h2>[[#{persona.formulario}]]</h2>
+    <a th:href="@{/}">[[#{accion.regresar}]]</a>
     <br>
     <form th:action="@{/save}" method="post" th:object="${person}">
         <input type="hidden" name="idPerson" th:field="*{idPerson}">
-        <label for="name">Nombre:</label>
+        <label for="name">[[#{persona.nombre}]]::</label>
         <input type="text" name="name" th:field="*{name}">
         <!-- para saber si se cumplen con los requisitos del modelo, notempty no nulo
         busca si existen errores, si existen se muestra -->
         <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">No puede estar vacío</span>
         <br>
-        <label for="lastName">Apellido:</label>
+        <label for="lastName">[[#{persona.apellido}]]:</label>
         <input type="text" name="lastName" th:field="*{lastName}">
         <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">No puede estar vacío</span>
         <br>
-        <label for="email">Correo:</label>
+        <label for="email">[[#{persona.correo}]]:</label>
         <input type="text" name="email" th:field="*{email}">        
         <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">No puede estar vacío</span>
         <br>
-        <label for="phone">Teléfono:</label>
+        <label for="phone">[[#{persona.telefono}]]:</label>
         <input type="tel" name="phone" th:field="*{phone}">
         <br>
-        <input type="submit" value="Guardar" name="guardar">
+        <input type="submit" th:value="#{accion.guardar}" name="guardar">
     </form>
     <footer th:replace="layout/template :: footer"></footer>
 </body>
