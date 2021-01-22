@@ -3,6 +3,7 @@ package ualb.com.HolaSpring;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -19,11 +20,11 @@ public class InitialController {
     private IPersonService iPersonService;
 
     @GetMapping("/")
-    public String getInitial(Model model) {
+    public String getInitial(Model model, @AuthenticationPrincipal User user) {
         var persons = iPersonService.listPersons();
  
         model.addAttribute("persons", persons);
-
+        
         return "index";
     }
 
